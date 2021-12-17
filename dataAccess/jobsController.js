@@ -45,3 +45,13 @@ exports.alterJob = (req, res) => {
         })
 }
 
+exports.deleteJob = (req, res) => {
+    connection.query(
+        "DELETE FROM jobs WHERE id = '" + req.query.id + "';", (error, results) => {
+            if (error) {
+                console.log(error)
+            } else
+            response.status(results, res)
+        }
+    )
+}

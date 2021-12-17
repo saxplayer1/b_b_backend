@@ -18,6 +18,15 @@ router.get('/', async (req, res) => {
 
 router.route('/').post(applicantController.createApplicant)
 
+router.post('/alter', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', "*")
+    try {
+        let result = await applicantController.alterApplicant(req, res);
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+})
 
 router.post('/delete', async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', "*")

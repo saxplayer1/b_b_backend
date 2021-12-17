@@ -28,5 +28,15 @@ router.route('/').post(jobsController.makeJob)
 
 router.route('/alter').post(jobsController.alterJob)
 
+router.post('/delete', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', "*")
+    try {
+        let result = await jobsController.deleteJob(req, res);
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+})
+
 
 module.exports = router;

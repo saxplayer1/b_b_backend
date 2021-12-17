@@ -48,3 +48,17 @@ exports.deleteApplicant = (req, res) => {
         }
     )
 }
+
+exports.alterApplicant = (req, res) => {
+    connection.query("update applicants set name ='" + req.query.name + "', "
+        + "surname = '" + req.query.surname + "', "
+        + "phone_number = '" + req.query.phone_number + "', "
+        + "email = '" + req.query.email + "' "
+        + "where passport_number = '" + req.query.passport_number + "';", (error, results) => {
+        if (error) {
+            console.log(error)
+        } else
+            console.log("applicant altered")
+        response.status(results, res)
+    })
+}
